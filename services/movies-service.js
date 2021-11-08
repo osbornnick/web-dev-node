@@ -20,9 +20,7 @@ const createMovie = (req, res) => {
 const saveMovie = (req, res) => {
     const newMovie = req.body;
     const movieId = req.params["mid"];
-    console.log(movies);
     movies = movies.map((movie) => (movie._id === movieId ? newMovie : movie));
-    console.log(movies);
     res.json(movies);
 };
 module.exports = (app) => {

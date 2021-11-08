@@ -23,5 +23,6 @@ app.get("/hello", (req, res) => {
 });
 
 require("./services/movies-service")(app);
+require("./services/tweeter-services")(app);
 
 app.listen(4000);
