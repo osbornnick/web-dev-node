@@ -26,4 +26,4 @@ require("./services/movies-service")(app);
 require("./services/tweeter-services")(app);
 
 const port = process.env.PORT;
-app.listen(4000);
+app.listen(port ? port : 4000);
