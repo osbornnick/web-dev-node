@@ -1,4 +1,4 @@
-const profile = require("../data/profile.json");
+let profile = require("../data/profile.json");
 
 const getCurrentProfile = (req, res) => {
     res.json(profile);
