@@ -25,4 +25,5 @@ app.get("/hello", (req, res) => {
 require("./services/movies-service")(app);
 require("./services/tweeter-services")(app);
 
+const port = process.env.PORT;
 app.listen(4000);
