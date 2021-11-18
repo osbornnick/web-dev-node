@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/webdev");
+require("dotenv").config();
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/webdev");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
