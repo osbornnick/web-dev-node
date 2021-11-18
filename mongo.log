@@ -1,0 +1,56 @@
+> db.movies.insert({title: 'Aliens', rating: 4.5})
+WriteResult({ "nInserted" : 1 })
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+webdev  0.000GB
+db.movies.insert({title: 'Terminator', rating: 4.8})
+WriteResult({ "nInserted" : 1 })
+> db.movies.insert({title: 'Avatar', rating: 4.7})
+WriteResult({ "nInserted" : 1 })
+> db.movies.insert({title: 'Dune', rating: 4.9})
+WriteResult({ "nInserted" : 1 })
+> db.movies.find();
+{ "_id" : ObjectId("6196cb481f1af34c644ee06c"), "title" : "Aliens", "rating" : 4.5 }
+{ "_id" : ObjectId("6196cc2a1f1af34c644ee06d"), "title" : "Terminator", "rating" : 4.8 }
+{ "_id" : ObjectId("6196cc341f1af34c644ee06e"), "title" : "Avatar", "rating" : 4.7 }
+{ "_id" : ObjectId("6196cc3d1f1af34c644ee06f"), "title" : "Dune", "rating" : 4.9 }
+> db.movies.fine({ "_id" : ObjectId("6196cb481f1af34c644ee06c")});
+uncaught exception: TypeError: db.movies.fine is not a function :
+@(shell):1:1
+> db.movies.find({ "_id" : ObjectId("6196cb481f1af34c644ee06c")});
+{ "_id" : ObjectId("6196cb481f1af34c644ee06c"), "title" : "Aliens", "rating" : 4.5 }
+>  db.movies.find({title: 'Aliens'});
+{ "_id" : ObjectId("6196cb481f1af34c644ee06c"), "title" : "Aliens", "rating" : 4.5 }
+> db.movies.find().pretty()
+{
+        "_id" : ObjectId("6196cb481f1af34c644ee06c"),
+        "title" : "Aliens",
+        "rating" : 4.5
+}
+{
+        "_id" : ObjectId("6196cc2a1f1af34c644ee06d"),
+        "title" : "Terminator",
+        "rating" : 4.8
+}
+{
+        "_id" : ObjectId("6196cc341f1af34c644ee06e"),
+        "title" : "Avatar",
+        "rating" : 4.7
+}
+{
+        "_id" : ObjectId("6196cc3d1f1af34c644ee06f"),
+        "title" : "Dune",
+        "rating" : 4.9
+}
+> db.movies.updateOne({title: 'Avatar'}, { $set: {rating: 4.9}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.movies.updateOne({_id: ObjectId("6196cc341f1af34c644ee06e")}, {$set: {rating: 4.5}});
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.movies.remove({_id: ObjectId("6196cc341f1af34c644ee06e")});
+WriteResult({ "nRemoved" : 1 })
+> db.movies.find()
+{ "_id" : ObjectId("6196cb481f1af34c644ee06c"), "title" : "Aliens", "rating" : 4.5 }
+{ "_id" : ObjectId("6196cc2a1f1af34c644ee06d"), "title" : "Terminator", "rating" : 4.8 }
+{ "_id" : ObjectId("6196cc3d1f1af34c644ee06f"), "title" : "Dune", "rating" : 4.9 }
