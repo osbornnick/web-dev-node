@@ -5,9 +5,12 @@ let movies = [
 ];
 
 const getAllMovies = (req, res) => res.json(movies);
+
 const deleteMovie = (req, res) => {
+    console.log(req.params);
     const id = req.params["mid"];
-    movies = movies.filter((m) => m._id !== id);
+    movies = movies.filter((m) => m._id != id);
+    console.log(movies);
     res.json(movies);
 };
 
