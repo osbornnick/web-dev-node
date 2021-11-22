@@ -1,7 +1,8 @@
+let dao = require("../db/tweets/tweet-dao.js");
 let tweets = require("../data/tweets.json");
 
 const findAllTweets = (req, res) => {
-    res.json(tweets);
+    res.json(dao.findAllTweets());
 };
 
 const postNewTweet = (req, res) => {
@@ -21,32 +22,29 @@ const postNewTweet = (req, res) => {
         },
         ...req.body,
     };
-    tweets = [newTweet, ...tweets];
+    dao.createTweet(newTweet);
     res.json(newTweet);
 };
 
 const deleteTweet = (req, res) => {
-    const id = req.params["id"];
-    tweets = tweets.filter((tweet) => tweet._id !== id);
+    dao.deleteTweet(req.params.id);
     res.sendStatus(200);
 };
 
 const likeTweet = (req, res) => {
-    const id = req.params["id"];
-    tweets = tweets.map((tweet) => {
-        if (tweet._id === id) {
-            if (tweet.liked === true) {
-                tweet.liked = false;
-                tweet.stats.likes--;
-            } else {
-                tweet.liked = true;
-                tweet.stats.likes++;
-            }
-            return tweet;
+    const id = req.params.id;
+    const tweet = dao.findTweetById(id);
+
+    if (tweet._id === id) {
+        if (tweet.liked === true) {
+            tweet.liked = false;
+            tweet.stats.likes--;
         } else {
-            return tweet;
+            tweet.liked = true;
+            tweet.stats.likes++;
         }
-    });
+    }
+    dao.updateTweet(id, tweet);
     res.sendStatus(200);
 };
 
