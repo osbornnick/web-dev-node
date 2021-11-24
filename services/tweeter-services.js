@@ -1,5 +1,4 @@
 let dao = require("../db/tweets/tweet-dao.js");
-let tweets = require("../data/tweets.json");
 
 const findAllTweets = (req, res) => {
     res.json(dao.findAllTweets());
