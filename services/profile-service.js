@@ -14,7 +14,9 @@ const updateCurrentProfile = (req, res) => {
 };
 
 const findProfileById = (req, res) =>
-    res.json(dao.findProfileById(req.params.id));
+    dao
+        .findProfileById("619e74a63e2722f7a9013a04")
+        .then((profile) => res.json(profile));
 
 const updateProfile = (req, res) => {
     dao.updateProfile(req.params.id, req.body.profile);
@@ -24,6 +26,6 @@ const updateProfile = (req, res) => {
 module.exports = (app) => {
     app.get("/api/profile", getCurrentProfile);
     app.put("/api/profile", updateCurrentProfile);
-    app.get("/rest/profile/:id", findProfileById);
+    app.get("/rest/profile", findProfileById);
     app.put("/rest/profile/:id", updateProfile);
 };

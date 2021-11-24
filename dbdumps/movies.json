@@ -1,0 +1,4 @@
+{"_id":{"$oid":"619e949ab03b3435e6d0fe06"},"title":"Aliens","rating":4.5}
+{"_id":{"$oid":"619e94a2b03b3435e6d0fe07"},"title":"Terminator","rating":4.8}
+{"_id":{"$oid":"619e94adb03b3435e6d0fe08"},"title":"Avatar","rating":4.9}
+{"_id":{"$oid":"619e94b2b03b3435e6d0fe09"},"title":"Dune","rating":4.9}
